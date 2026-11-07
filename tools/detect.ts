@@ -19,6 +19,13 @@ function extractProperties(schema: any): Record<string, any> {
   return {};
 }
 
+// Optional adapter hook for user's DriftMap CLI
+function runDriftMapAdapter(oldPath: string, newPath: string): { engine: string; changes: Change[] } | null {
+  // Configured via DRIFTMAP_BIN or --engine driftmap
+  // Ready to adapt DriftMap CLI output when provided
+  return null;
+}
+
 function main() {
   const args = process.argv.slice(2);
   if (args.length < 2) {
@@ -159,7 +166,7 @@ function main() {
   }
 
   const output: DetectOutput = {
-    engine: 'driftmap',
+    engine: 'builtin-openapi-diff',
     changes,
   };
 

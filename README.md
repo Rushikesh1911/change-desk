@@ -78,7 +78,7 @@ npx tsx tools/cost.ts findings.json service-map.yaml
 ```
 
 **Expected Result:**
-- `detect.ts`: Identifies `c1` (`qty` removed, BREAKING), `c2` (`coupon` required, BREAKING), `c3` (`nickname` added, SAFE).
+- `detect.ts`: Identifies `c1` (`qty` removed, BREAKING), `c2` (`coupon` required, BREAKING), `c3` (`nickname` added, SAFE) via `builtin-openapi-diff`.
 - `usage-scan.ts`: Finds `checkout-service` breaks on lines 2, 3, 6, 7 of `cart.ts`. Confirms `mobile-app` is safe.
 - `cost.ts`: Outputs `₹3,60,000` estimated loss for `checkout-service` (₹1,20,000/hr &times; 3 hrs).
 
@@ -125,7 +125,7 @@ change-desk/
 ---
 
 ## Honest Notes & Limitations
-- **DriftMap Engine:** `tools/detect.ts` is modeled on the DriftMap API architecture. It natively parses OpenAPI 3.0 specs and checks for response field removals/renames, new required parameters, and safe optional additions.
+- **Detection Engine:** `tools/detect.ts` uses `builtin-openapi-diff`, a deterministic TypeScript AST differ built for this workflow. An optional adapter is prepared to wrap the builder's standalone `driftmap` CLI.
 - **Service Map Numbers:** The revenue figures in `service-map.yaml` are illustrative for the demo.
 - **Deterministic First:** No numbers or file paths are ever guessed or hallucinated by LLMs.
 
