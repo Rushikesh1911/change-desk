@@ -7,6 +7,7 @@
     "detect": "tsx tools/detect.ts",
     "scan": "tsx tools/usage-scan.ts",
     "cost": "tsx tools/cost.ts",
+    "pipeline": "tsx tools/detect.ts demo/api-service/openapi.v1.yaml demo/api-service/openapi.v2.yaml --out changes.json && tsx tools/usage-scan.ts changes.json service-map.yaml --out findings.json && tsx tools/cost.ts findings.json service-map.yaml --out cost.json",
     "seed": "tsx scripts/seed.ts"
   },
   "dependencies": {

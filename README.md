@@ -133,3 +133,4 @@ change-desk/
 
 ## Credits & License
 MIT License. Created by [Rushikesh (@rushixh)](https://github.com/Rushikesh1911) for the **Flip the Switch Hackathon 2026**.
+

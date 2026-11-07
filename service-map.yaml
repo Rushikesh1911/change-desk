@@ -11,3 +11,4 @@ services:
     path: ./demo/mobile-app
     revenue_per_hour: 40000
     criticality: medium
+

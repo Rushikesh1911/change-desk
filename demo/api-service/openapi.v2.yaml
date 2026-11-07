@@ -45,3 +45,4 @@ paths:
                   id: { type: string }
                   name: { type: string }
                   nickname: { type: string }
+

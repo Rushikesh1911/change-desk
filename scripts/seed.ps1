@@ -14,3 +14,4 @@ git checkout HEAD -- demo/ 2>$null
 git clean -fd demo/ 2>$null
 
 Write-Host "==> Change Desk demo state reset successfully."
+

@@ -63,3 +63,4 @@ export interface CostOutput {
   services: CostServiceResult[];
   total_estimated_loss: number;
 }
+

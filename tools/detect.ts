@@ -163,7 +163,15 @@ function main() {
     changes,
   };
 
-  process.stdout.write(JSON.stringify(output, null, 2) + '\n');
+  const jsonStr = JSON.stringify(output, null, 2);
+
+  const outIdx = args.indexOf('--out');
+  if (outIdx !== -1 && args[outIdx + 1]) {
+    const outPath = resolveSafePath(args[outIdx + 1]);
+    fs.writeFileSync(outPath, jsonStr, 'utf8');
+  }
+
+  process.stdout.write(jsonStr + '\n');
 }
 
 main();

@@ -2,3 +2,4 @@
 export function renderCart(cart: { items: { sku: string; price: number }[] }) {
   return cart.items.map((i) => `${i.sku}: ${i.price}`);
 }
+

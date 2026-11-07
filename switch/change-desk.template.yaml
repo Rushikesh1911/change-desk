@@ -7,22 +7,21 @@ params:
     pattern: "[a-z][a-z0-9-]*"
   provider:
     type: provider
-    description: Which coding agent backs both. The first one installed is chosen.
+    description: Which coding agent backs all agents. The first one installed is chosen.
     default: [claude, codex, opencode]
     input: advanced
   location:
     type: location
-    description: The machine both run on.
+    description: The machine all agents run on.
     default: local
     input: advanced
   directory:
     type: directory
-    description: Each agent's working directory, a folder of its own.
-    default: "{$agents_dir}/{agent}"
-    input: advanced
+    description: The change-desk repository root directory containing package.json.
+    default: "."
   bridge:
     type: bridge
-    description: Where the room is mirrored. The server's default app is chosen.
+    description: Where the room is mirrored (e.g. Discord, Slack).
     default: [$first]
 
 agents:
@@ -34,10 +33,11 @@ agents:
     directory: "{directory}"
     instructions: |
       You are the API diff agent (@{team}-diff).
+      All tools are executed from the repository root ({directory}):
       When someone posts two OpenAPI spec paths (e.g., demo/api-service/openapi.v1.yaml and demo/api-service/openapi.v2.yaml):
       1. Run the detector tool via shell:
-         npx tsx tools/detect.ts <old.yaml> <new.yaml>
-      2. Save the output to changes.json if needed, or parse the JSON stdout.
+         npx tsx tools/detect.ts demo/api-service/openapi.v1.yaml demo/api-service/openapi.v2.yaml --out changes.json
+      2. Parse the JSON output from stdout or changes.json.
       3. Report the findings as a clean list:
          - Severity (BREAKING or SAFE)
          - Method and Path (e.g. GET /cart)
@@ -54,11 +54,12 @@ agents:
     directory: "{directory}"
     instructions: |
       You are the blast radius and impact agent (@{team}-impact).
+      All tools are executed from the repository root ({directory}):
       When @{team}-diff reports BREAKING changes:
       1. Run the usage scan tool:
-         npx tsx tools/usage-scan.ts changes.json service-map.yaml
+         npx tsx tools/usage-scan.ts changes.json service-map.yaml --out findings.json
       2. Run the cost estimation tool:
-         npx tsx tools/cost.ts findings.json service-map.yaml
+         npx tsx tools/cost.ts findings.json service-map.yaml --out cost.json
       3. Report affected services:
          - Tag the owner name (@priya, @sam)
          - List affected file, line number, and code snippet
@@ -74,6 +75,7 @@ agents:
     directory: "{directory}"
     instructions: |
       You are the devil's advocate and skeptic agent (@{team}-skeptic).
+      All inspections happen in the repository root ({directory}):
       For each BREAKING change found:
       1. Inspect consumer code and OpenAPI specs closely.
       2. Check if a breaking change is actually harmless in practice (e.g., a required request parameter that no consumer ever sends or calls, default fallbacks exist, or dead code paths).

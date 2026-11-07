@@ -16,3 +16,4 @@
 | **0:40 - 1:00** | `@skeptic` chimes in with a challenge. Human owner replies. | "Then `@skeptic` plays devil's advocate. It challenges the coupon finding, confirming no active consumers send it. But Priya confirms the checkout breakage is very real." | `@skeptic` posts challenge on `coupon`. Human (Priya) types: *"Approved to block deployment until checkout migrates."* |
 | **1:00 - 1:15** | Decision logged in room. | "Every change has an owner, every risk has a rupee value, and every approval is logged with a clean audit trail." | Show the thread summary / decisions. |
 | **1:15 - 1:30** | Closing screen: Architecture diagram + GitHub repo link. | "Agents argue, numbers stay grounded in real tools, and humans make the final call. Without Switch, this is just another ignored CI run. With Switch, it's Change Desk." | Show GitHub link: `github.com/Rushikesh1911/change-desk`. |
+

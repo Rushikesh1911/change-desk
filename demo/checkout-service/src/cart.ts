@@ -6,3 +6,4 @@ export function cartTotal(cart: { items: { sku: string; qty: number; price: numb
 export function itemCount(cart: { items: { qty: number }[] }) {
   return cart.items.reduce((n, item) => n + item.qty, 0);
 }
+
