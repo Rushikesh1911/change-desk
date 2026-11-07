@@ -7,7 +7,7 @@
     "detect": "tsx tools/detect.ts",
     "scan": "tsx tools/usage-scan.ts",
     "cost": "tsx tools/cost.ts",
-    "seed": "bash scripts/seed.sh"
+    "seed": "tsx scripts/seed.ts"
   },
   "dependencies": {
     "yaml": "^2.6.1"
