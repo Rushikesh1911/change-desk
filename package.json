@@ -1,0 +1,20 @@
+{
+  "name": "change-desk",
+  "version": "1.0.0",
+  "description": "An approval room where AI agents and team owners decide if an API change is safe to ship",
+  "type": "module",
+  "scripts": {
+    "detect": "tsx tools/detect.ts",
+    "scan": "tsx tools/usage-scan.ts",
+    "cost": "tsx tools/cost.ts",
+    "seed": "bash scripts/seed.sh"
+  },
+  "dependencies": {
+    "yaml": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

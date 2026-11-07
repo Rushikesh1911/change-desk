@@ -1,0 +1,13 @@
+# Figures are illustrative, for the demo only.
+currency: INR
+services:
+  checkout-service:
+    owner: priya
+    path: ./demo/checkout-service
+    revenue_per_hour: 120000
+    criticality: high
+  mobile-app:
+    owner: sam
+    path: ./demo/mobile-app
+    revenue_per_hour: 40000
+    criticality: medium

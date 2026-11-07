@@ -1,0 +1,7 @@
+node_modules/
+dist/
+changes.json
+findings.json
+cost.json
+*.log
+.DS_Store

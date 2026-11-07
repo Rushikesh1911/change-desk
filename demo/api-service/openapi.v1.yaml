@@ -1,0 +1,46 @@
+openapi: 3.0.3
+info: { title: Shop API, version: 1.0.0 }
+paths:
+  /cart:
+    get:
+      responses:
+        "200":
+          description: Cart contents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sku: { type: string }
+                        qty: { type: integer }
+                        price: { type: number }
+  /order:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_id: { type: string }
+                coupon: { type: string }
+              required: [cart_id]
+      responses:
+        "201": { description: Created }
+  /user:
+    get:
+      responses:
+        "200":
+          description: User
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  name: { type: string }
